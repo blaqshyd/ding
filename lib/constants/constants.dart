@@ -9,6 +9,8 @@ const sizedHeight20 = SizedBox(height: 20);
 const sizedHeight40 = SizedBox(height: 40);
 const sizedHeight60 = SizedBox(height: 60);
 
+const sizedWidth05 = SizedBox(width: 5);
+
 // Text Styles
 
 final bodyTextStyle = TextStyle(
@@ -19,7 +21,7 @@ final bodyTextStyle = TextStyle(
 
 final buttonTextStyle = TextStyle(
   color: Colors.white,
-  fontSize: 16,
+  fontSize: 12,
   fontFamily: 'Poppins',
 );
 final hintTextStyle = TextStyle(
