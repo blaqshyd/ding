@@ -5,7 +5,7 @@ import 'package:ding_app/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../utils/routes.dart';
+import '../../utils/routes.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -77,11 +77,7 @@ class WelcomeScreen extends StatelessWidget {
                   height: 38,
                   width: 38,
                 ),
-                // icon: SvgPicture.asset(
-                //   'assets/logos/google1.svg',
-                //   height: 40,
-                //   width: 40,
-                // ),
+              
                 label: Text(
                   'Sign up with Google',
                   style: buttonTextStyle,

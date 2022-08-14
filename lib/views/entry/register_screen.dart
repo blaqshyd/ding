@@ -1,24 +1,15 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:ding_app/constants/colors.dart';
+import 'package:ding_app/constants/constants.dart';
+import 'package:ding_app/utils/routes.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/constants.dart';
-
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  bool isChecked = false;
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // bool isChecked = false;
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundColor,
@@ -28,9 +19,26 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                TextButton.icon(
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.all(0),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: buttonTextColor,
+                    size: 18,
+                  ),
+                  label: Text(
+                    'Back',
+                    style: buttonTextStyle,
+                  ),
+                ),
                 sizedHeight20,
                 Text(
-                  'Log In',
+                  'Sign Up',
                   style: bodyTextStyle.copyWith(
                     fontWeight: FontWeight.w700,
                     fontSize: 28,
@@ -38,20 +46,35 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 sizedHeight60,
                 MyFormField(
+                  inputTextStyle: inputTextStyle,
+                  inputLabel: 'Name',
+                  inputHint: 'John Doe',
+                  inputHintStyle: hintTextStyle,
+                  inputLabelStyle: TextStyle(color: secondaryColor),
+                  inputFilled: true,
+                  contentPadding: inputPadding,
+                  inputFillColor: inputColor,
+                  border: enabledBorder,
+                  focusedBorder: focusedBorder,
+                ),
+                sizedHeight20,
+                MyFormField(
+                  inputTextStyle: inputTextStyle,
                   inputLabel: 'Email',
                   inputHint: 'johndoe@gmail.com',
                   inputHintStyle: hintTextStyle,
                   inputLabelStyle: TextStyle(color: secondaryColor),
-                  contentPadding: inputPadding,
                   inputFilled: true,
+                  contentPadding: inputPadding,
                   inputFillColor: inputColor,
                   border: enabledBorder,
                   focusedBorder: focusedBorder,
                 ),
                 sizedHeight20,
                 MyFormField(
+                  inputTextStyle: inputTextStyle,
                   inputLabel: 'Password',
-                  inputHint: '********',
+                  inputHint: 'Password',
                   inputHintStyle: hintTextStyle,
                   inputLabelStyle: TextStyle(color: secondaryColor),
                   inputFilled: true,
@@ -62,8 +85,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 sizedHeight20,
                 MyFormField(
+                  inputTextStyle: inputTextStyle,
                   inputLabel: 'Confirm Password',
-                  inputHint: '********',
+                  inputHint: 'Confirm Password',
                   inputHintStyle: hintTextStyle,
                   inputLabelStyle: TextStyle(color: secondaryColor),
                   inputFilled: true,
@@ -71,36 +95,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   inputFillColor: inputColor,
                   border: enabledBorder,
                   focusedBorder: focusedBorder,
-                ),
-                sizedHeight20,
-                Row(
-                  children: [
-                    Text(
-                      'Stay Logged In',
-                      style: buttonTextStyle,
-                    ),
-                    sizedWidth05,
-                    Checkbox(
-                      value: isChecked,
-                      activeColor: secondaryColor,
-                      checkColor: primaryColor,
-                      focusColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      onChanged: (isChecked) {
-                        setState(() {
-                          this.isChecked = isChecked!;
-                        });
-                      },
-                    ),
-                  ],
                 ),
                 sizedHeight40,
                 ElevatedButton(
                   style: primaryButtonStyle,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, suggestionRoute);
+                  },
                   child: Text(
-                    'Get Started',
+                    'Sign Up',
                     style: buttonTextStyle,
                   ),
                 ),
