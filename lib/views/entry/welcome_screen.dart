@@ -17,7 +17,8 @@ class WelcomeScreen extends StatelessWidget {
     }
 
     void toLogIn() {
-      Navigator.pushNamed(context, loginRoute);
+      Navigator.pushNamedAndRemoveUntil(
+          context, loginRoute, (context) => false);
     }
 
     return Scaffold(
@@ -77,7 +78,6 @@ class WelcomeScreen extends StatelessWidget {
                   height: 38,
                   width: 38,
                 ),
-              
                 label: Text(
                   'Sign up with Google',
                   style: buttonTextStyle,

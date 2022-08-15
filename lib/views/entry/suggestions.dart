@@ -2,7 +2,10 @@
 
 import 'package:ding_app/constants/colors.dart';
 import 'package:ding_app/constants/constants.dart';
+import 'package:ding_app/utils/routes.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/search_song.dart';
 
 class SuggestionScreen extends StatelessWidget {
   const SuggestionScreen({Key? key}) : super(key: key);
@@ -19,6 +22,7 @@ class SuggestionScreen extends StatelessWidget {
             padding: bodyPadding,
             child: Column(
               children: [
+                sizedHeight10,
                 SizedBox(
                   height: size.height * 0.22,
                   child: Column(
@@ -34,17 +38,7 @@ class SuggestionScreen extends StatelessWidget {
                         ),
                       ),
                       sizedHeight20,
-                      MyFormField(
-                        inputTextStyle: inputTextStyle,
-                        inputHint: 'Search artiste name',
-                        inputHintStyle: hintTextStyle,
-                        contentPadding:
-                            inputPadding.copyWith(top: 10, bottom: 10),
-                        inputFilled: true,
-                        inputFillColor: inputColor,
-                        border: enabledBorder,
-                        focusedBorder: focusedBorder,
-                      ),
+                      SearchSong(),
                     ],
                   ),
                 ),
@@ -91,7 +85,9 @@ class SuggestionScreen extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         style: primaryButtonStyle,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, mainRoute);
+                        },
                         child: Text(
                           'Continue',
                           style: buttonTextStyle,
