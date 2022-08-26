@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ding_app/constants/colors.dart';
+import 'package:ding_app/utils/routes.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,6 +15,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isChecked = false;
+  bool isSignupLoading = false;
+  bool isLoginLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -99,11 +101,24 @@ class _LoginScreenState extends State<LoginScreen> {
                 sizedHeight40,
                 ElevatedButton(
                   style: primaryButtonStyle,
-                  onPressed: () {},
-                  child: Text(
-                    'Get Started',
-                    style: buttonTextStyle,
-                  ),
+                  onPressed: () async {
+                    setState(() {
+                      isSignupLoading = true;
+                    });
+                    await Future.delayed(Duration(seconds: 3), () {
+                      setState(() {
+                        isSignupLoading = false;
+                      });
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, mainRoute, (context) => false);
+                    });
+                  },
+                  child: isSignupLoading
+                      ? Text('Verifying credentials...')
+                      : Text(
+                          'Get Started',
+                          style: buttonTextStyle,
+                        ),
                 ),
               ],
             ),

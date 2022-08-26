@@ -7,7 +7,18 @@ import '../../../../constants/colors.dart';
 import '../../../../constants/constants.dart';
 
 class Trending extends StatelessWidget {
-  const Trending({
+  final List title = [
+    'Stay',
+    'Bandana',
+    'Buga',
+  ];
+  final List artiste = [
+    'Justin Bieber ft Kid Laroi',
+    'Fireboy DML',
+    'Kizz Daniel'
+  ];
+
+  Trending({
     Key? key,
   }) : super(key: key);
 
@@ -34,11 +45,11 @@ class Trending extends StatelessWidget {
               ),
             ),
             title: Text(
-              'Bandana',
+              title[index],
               style: bodyTextStyle.copyWith(fontSize: 16),
             ),
             subtitle: Text(
-              'Fireboy DML ft Asake',
+              artiste[index],
               style: bodyTextStyle.copyWith(
                 fontSize: 12,
                 color: secondaryColor,

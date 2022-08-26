@@ -7,20 +7,19 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../utils/routes.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  bool isSignupLoading = false;
+  bool isLoginLoading = false;
+
+  @override
   Widget build(BuildContext context) {
-    void toSignUp() {
-      Navigator.pushNamed(context, registerRoute);
-    }
-
-    void toLogIn() {
-      Navigator.pushNamedAndRemoveUntil(
-          context, loginRoute, (context) => false);
-    }
-
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Padding(
@@ -41,20 +40,46 @@ class WelcomeScreen extends StatelessWidget {
             // sizedHeight60,
             ElevatedButton(
               style: primaryButtonStyle,
-              onPressed: toSignUp,
-              child: Text(
-                'Sign Up',
-                style: buttonTextStyle,
-              ),
+              onPressed: () async {
+                setState(() {
+                  isSignupLoading = true;
+                });
+                await Future.delayed(Duration(seconds: 3), () {
+                  setState(() {
+                    isSignupLoading = false;
+                  });
+                  Navigator.pushNamed(context, registerRoute);
+                });
+              },
+              child: isSignupLoading
+                  ? CircularProgressIndicator(color: Colors.white)
+                  : Text(
+                      'Sign Up',
+                      style: buttonTextStyle,
+                    ),
             ),
             sizedHeight10,
             OutlinedButton(
               style: secondaryButtonStyle,
-              onPressed: toLogIn,
-              child: Text(
-                'Log In',
-                style: buttonTextStyle,
-              ),
+              onPressed: () async {
+                setState(() {
+                  isLoginLoading = true;
+                });
+                await Future.delayed(Duration(seconds: 3), () {
+                  setState(() {
+                    isLoginLoading = false;
+                  });
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, loginRoute, (context) => false);
+                });
+              },
+              child: isLoginLoading
+                      ? CircularProgressIndicator(color: Colors.white)
+
+                  : Text(
+                      'Log In',
+                      style: buttonTextStyle,
+                    ),
             ),
             sizedHeight20,
             MyDivider(
@@ -69,14 +94,14 @@ class WelcomeScreen extends StatelessWidget {
             sizedHeight20,
             TextButton.icon(
                 style: TextButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                   primary: buttonTextColor,
                 ),
                 onPressed: () {},
                 icon: Image.asset(
                   'assets/logos/google.png',
-                  height: 38,
-                  width: 38,
+                  height: 30,
+                  width: 30,
                 ),
                 label: Text(
                   'Sign up with Google',
@@ -84,15 +109,15 @@ class WelcomeScreen extends StatelessWidget {
                 )),
             TextButton.icon(
                 style: TextButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                   primary: buttonTextColor,
                 ),
                 onPressed: () {},
                 icon: SvgPicture.asset(
                   'assets/logos/apple.svg',
                   color: buttonTextColor,
-                  height: 32,
-                  width: 32,
+                  height: 26,
+                  width: 26,
                 ),
                 label: Text(
                   'Sign up with Apple',

@@ -7,9 +7,25 @@ import '../../../../constants/colors.dart';
 import '../../../../constants/constants.dart';
 
 class LibraryMenu extends StatelessWidget {
-  const LibraryMenu({
+  LibraryMenu({
     Key? key,
+    // required this.icon,
   }) : super(key: key);
+  // final IconData icon;
+
+  final List<String> libraryMenu = [
+    'Downloaads',
+    'Favorites',
+    'Playlists',
+    'Albums',
+  ];
+
+  final List<IconData> icon = [
+    FeatherIcons.music,
+    FeatherIcons.heart,
+    FeatherIcons.playCircle,
+    FeatherIcons.book,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +38,11 @@ class LibraryMenu extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             leading: Icon(
-              FeatherIcons.music,
+              icon[index],
               color: secondaryColor,
             ),
             title: Text(
-              'Downloads',
+              libraryMenu[index],
               style: bodyTextStyle.copyWith(fontSize: 16),
             ),
             trailing: Icon(

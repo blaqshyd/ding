@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -10,18 +12,23 @@ class SearchSong extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyFormField(
-      inputTextStyle: inputTextStyle,
-      inputHint: 'Search artiste name',
-      inputHintStyle: hintTextStyle,
-      contentPadding: inputPadding.copyWith(
-        top: 10,
-        bottom: 10,
-      ),
-      inputFilled: true,
-      inputFillColor: inputColor,
-      border: enabledBorder,
-      focusedBorder: focusedBorder,
+    return Row(
+      children: [
+        MyFormField(
+          inputTextStyle: inputTextStyle,
+          inputHint: 'Search artiste name',
+          inputHintStyle: hintTextStyle,
+          contentPadding: inputPadding.copyWith(
+            top: 10,
+            bottom: 10,
+          ),
+          inputFilled: true,
+          inputFillColor: inputColor,
+          border: enabledBorder,
+          focusedBorder: focusedBorder,
+        ),
+        // ElevatedButton(onPressed: () {}, child: Text('Air'))
+      ],
     );
   }
 }

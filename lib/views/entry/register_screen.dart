@@ -5,8 +5,16 @@ import 'package:ding_app/constants/constants.dart';
 import 'package:ding_app/utils/routes.dart';
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  bool isSignupLoading = false;
+  bool isLoginLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +41,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   label: Text(
                     'Back',
-                    style: buttonTextStyle,
+                    style: buttonTextStyle.copyWith(fontSize: 16),
                   ),
                 ),
                 sizedHeight20,
@@ -45,73 +53,83 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ),
                 sizedHeight60,
-                MyFormField(
-                  inputTextStyle: inputTextStyle,
-                  inputLabel: 'Name',
-                  inputHint: 'John Doe',
-                  inputHintStyle: hintTextStyle,
-                  inputLabelStyle: TextStyle(color: secondaryColor),
-                  inputFilled: true,
-                  contentPadding: inputPadding,
-                  inputFillColor: inputColor,
-                  border: enabledBorder,
-                  focusedBorder: focusedBorder,
+                FormField(
+                  label: 'Name',
+                  hint: 'John Doe',
                 ),
                 sizedHeight20,
-                MyFormField(
-                  inputTextStyle: inputTextStyle,
-                  inputLabel: 'Email',
-                  inputHint: 'johndoe@gmail.com',
-                  inputHintStyle: hintTextStyle,
-                  inputLabelStyle: TextStyle(color: secondaryColor),
-                  inputFilled: true,
-                  contentPadding: inputPadding,
-                  inputFillColor: inputColor,
-                  border: enabledBorder,
-                  focusedBorder: focusedBorder,
+                FormField(
+                  label: 'Email',
+                  hint: 'johndoe@gmail.com',
                 ),
                 sizedHeight20,
-                MyFormField(
-                  inputTextStyle: inputTextStyle,
-                  inputLabel: 'Password',
-                  inputHint: 'Password',
-                  inputHintStyle: hintTextStyle,
-                  inputLabelStyle: TextStyle(color: secondaryColor),
-                  inputFilled: true,
-                  contentPadding: inputPadding,
-                  inputFillColor: inputColor,
-                  border: enabledBorder,
-                  focusedBorder: focusedBorder,
+                FormField(
+                  label: 'Password',
+                  hint: 'Password',
+                  obscureText: true,
                 ),
                 sizedHeight20,
-                MyFormField(
-                  inputTextStyle: inputTextStyle,
-                  inputLabel: 'Confirm Password',
-                  inputHint: 'Confirm Password',
-                  inputHintStyle: hintTextStyle,
-                  inputLabelStyle: TextStyle(color: secondaryColor),
-                  inputFilled: true,
-                  contentPadding: inputPadding,
-                  inputFillColor: inputColor,
-                  border: enabledBorder,
-                  focusedBorder: focusedBorder,
+                FormField(
+                  label: 'Confirm Password',
+                  hint: 'Confirm Password',
+                  obscureText: true,
                 ),
                 sizedHeight40,
                 ElevatedButton(
                   style: primaryButtonStyle,
-                  onPressed: () {
-                    Navigator.pushNamed(context, suggestionRoute);
+                  onPressed: () async {
+                    setState(() {
+                      isSignupLoading = true;
+                    });
+                    await Future.delayed(Duration(seconds: 3), () {
+                      setState(() {
+                        isSignupLoading = false;
+                      });
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, suggestionRoute, (context) => false);
+                    });
                   },
-                  child: Text(
-                    'Sign Up',
-                    style: buttonTextStyle,
-                  ),
+                  child: isSignupLoading
+                      ? CircularProgressIndicator(color: Colors.white)
+                      : Text(
+                          'Sign Up',
+                          style: buttonTextStyle,
+                        ),
                 ),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class FormField extends StatelessWidget {
+  const FormField({
+    Key? key,
+    required this.label,
+    required this.hint,
+    this.obscureText,
+  }) : super(key: key);
+
+  final String label, hint;
+  final bool? obscureText;
+
+  @override
+  Widget build(BuildContext context) {
+    return MyFormField(
+      inputTextStyle: inputTextStyle,
+      inputLabel: label,
+      inputHint: hint,
+      obscureText: obscureText,
+      inputHintStyle: hintTextStyle,
+      inputLabelStyle: TextStyle(color: secondaryColor),
+      inputFilled: true,
+      contentPadding: inputPadding,
+      inputFillColor: inputColor,
+      border: enabledBorder,
+      focusedBorder: focusedBorder,
     );
   }
 }
