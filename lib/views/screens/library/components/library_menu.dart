@@ -14,7 +14,7 @@ class LibraryMenu extends StatelessWidget {
   // final IconData icon;
 
   final List<String> libraryMenu = [
-    'Downloaads',
+    'Downloads',
     'Favorites',
     'Playlists',
     'Albums',
