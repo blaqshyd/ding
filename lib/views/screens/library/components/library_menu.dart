@@ -7,11 +7,7 @@ import '../../../../constants/colors.dart';
 import '../../../../constants/constants.dart';
 
 class LibraryMenu extends StatelessWidget {
-  LibraryMenu({
-    Key? key,
-    // required this.icon,
-  }) : super(key: key);
-  // final IconData icon;
+  LibraryMenu({Key? key}) : super(key: key);
 
   final List<String> libraryMenu = [
     'Downloads',

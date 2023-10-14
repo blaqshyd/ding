@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ding_app/utils/my_formfield.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -33,8 +34,8 @@ class SearchSong extends StatelessWidget {
         ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
-            primary: primaryColor,
-            onPrimary: buttonTextColor,
+            backgroundColor: primaryColor,
+            foregroundColor: buttonTextColor,
             padding: EdgeInsets.symmetric(vertical: 22),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),

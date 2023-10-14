@@ -74,28 +74,27 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 });
               },
               child: isLoginLoading
-                      ? CircularProgressIndicator(color: Colors.white)
-
+                  ? CircularProgressIndicator(color: Colors.white)
                   : Text(
                       'Log In',
                       style: buttonTextStyle,
                     ),
             ),
             sizedHeight20,
-            MyDivider(
-              label: 'OR',
-              labelFamily: 'Poppins',
-              labelSize: 14,
-              labelColor: Colors.white,
-              color: Colors.grey,
-              indentleft: 40,
-              indentright: 40,
-            ),
+            // MyDivider(
+            //   label: 'OR',
+            //   labelFamily: 'Poppins',
+            //   labelSize: 14,
+            //   labelColor: Colors.white,
+            //   color: Colors.grey,
+            //   indentleft: 40,
+            //   indentright: 40,
+            // ),
             sizedHeight20,
             TextButton.icon(
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                  primary: buttonTextColor,
+                  foregroundColor: buttonTextColor,
                 ),
                 onPressed: () {},
                 icon: Image.asset(

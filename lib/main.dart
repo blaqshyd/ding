@@ -13,21 +13,23 @@ import 'views/entry/register_screen.dart';
 import 'views/entry/welcome_screen.dart';
 
 void main() {
-  runApp(DevicePreview(
-    enabled: true,
-    builder: (context) => MaterialApp(
-      useInheritedMediaQuery: true,
-      debugShowCheckedModeBanner: false,
-      initialRoute: splashRoute,
-      routes: {
-        splashRoute: (context) => SplashScreen(),
-        suggestionRoute: (context) => SuggestionScreen(),
-        loginRoute: (context) => LoginScreen(),
-        registerRoute: (context) => RegisterScreen(),
-        welcomeRoute: (context) => WelcomeScreen(),
-        homeRoute: (context) => HomeScreen(),
-        mainRoute: (context) => MainScreen(),
-      },
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (context) => MaterialApp(
+        useInheritedMediaQuery: true,
+        debugShowCheckedModeBanner: false,
+        initialRoute: splashRoute,
+        routes: {
+          splashRoute: (context) => SplashScreen(),
+          suggestionRoute: (context) => SuggestionScreen(),
+          loginRoute: (context) => LoginScreen(),
+          registerRoute: (context) => RegisterScreen(),
+          welcomeRoute: (context) => WelcomeScreen(),
+          homeRoute: (context) => HomeScreen(),
+          mainRoute: (context) => MainScreen(),
+        },
+      ),
     ),
-  ));
+  );
 }
